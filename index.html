@@ -1,43 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body { background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; }
-        nav { padding: 20px; display: flex; justify-content: center; gap: 30px; border-bottom: 1px solid #333; }
-        nav a { color: #fff; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; }
-        .hero { padding: 100px 20px; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 50px; }
-        .section-title { text-align: center; font-size: 2rem; margin-top: 50px; }
-        video { width: 100%; border-radius: 8px; }
-        .newsletter { padding: 50px; text-align: center; border: 1px solid #333; margin: 20px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIA — Say It Aloud | Communication & Career Activation</title>
+<meta name="description" content="SIA (Say It Aloud) transforms academic potential into professional presence through stage presence, AI literacy, and corporate-readiness training.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1A33;
+    --navy-light:#1E2F4D;
+    --gold:#C9A24B;
+    --gold-bright:#E0BE6F;
+    --cream:#F7F4EE;
+    --ink:#10141C;
+    --ink-soft:#4A5161;
+    --line:rgba(201,162,75,0.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces', serif;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* Waveform signature */
+  .wave{display:flex; align-items:flex-end; gap:4px; height:18px;}
+  .wave span{width:3px; background:var(--gold); border-radius:2px;}
+  .wave.dark span{background:var(--gold-bright);}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,26,51,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(201,162,75,0.18);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:20px 32px;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand .mark{font-family:'Fraunces',serif; font-weight:700; font-size:1.5rem; color:var(--cream); letter-spacing:0.02em;}
+  .brand .tag{font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-top:2px;}
+  .navlinks{display:flex; gap:34px; align-items:center;}
+  .navlinks a{font-size:0.85rem; font-weight:500; color:#D8DCE6; letter-spacing:0.01em; transition:color .2s;}
+  .navlinks a:hover{color:var(--gold-bright);}
+  .nav-cta{
+    background:var(--gold); color:var(--navy); padding:10px 20px; border-radius:2px;
+    font-weight:600; font-size:0.8rem; letter-spacing:0.04em; text-transform:uppercase;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--gold-bright);}
+  .navtoggle{display:none;}
+
+  /* HERO */
+  .hero{
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(201,162,75,0.16), transparent 55%),
+      linear-gradient(180deg, var(--navy) 0%, #0E2140 100%);
+    color:var(--cream);
+    padding:110px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(90deg, rgba(201,162,75,0.05) 0, rgba(201,162,75,0.05) 1px, transparent 1px, transparent 80px);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:2; max-width:760px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold-bright); margin-bottom:28px; font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.6vw, 4.6rem);
+    line-height:1.04;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin-bottom:8px;
+  }
+  .hero h1 em{font-style:italic; font-weight:500; color:var(--gold-bright);}
+  .hero-wave{margin:28px 0 30px;}
+  .hero-wave span{animation:bounce 1.8s ease-in-out infinite;}
+  .hero-wave span:nth-child(odd){animation-delay:.15s;}
+  .hero-wave span:nth-child(3n){animation-delay:.3s;}
+  @keyframes bounce{
+    0%,100%{height:6px;} 50%{height:24px;}
+  }
+  @media (prefers-reduced-motion: reduce){ .hero-wave span{animation:none; height:14px;} }
+  .hero p.lede{
+    font-size:1.15rem; line-height:1.65; color:#C3CADC; max-width:540px; margin-bottom:42px; font-weight:400;
+  }
+  .hero-actions{display:flex; gap:18px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold); color:var(--navy); padding:16px 30px; font-weight:600;
+    font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase; border-radius:2px;
+    transition:transform .2s, background .2s; display:inline-block;
+  }
+  .btn-primary:hover{background:var(--gold-bright); transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid rgba(247,244,238,0.35); color:var(--cream); padding:16px 30px;
+    font-weight:500; font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase; border-radius:2px;
+    transition:border-color .2s, background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--gold-bright); background:rgba(201,162,75,0.08);}
+
+  /* STAT BAR */
+  .stats{
+    background:var(--navy-light); color:var(--cream); padding:46px 0;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;}
+  .stat .num{font-family:'Fraunces',serif; font-size:2.4rem; font-weight:600; color:var(--gold-bright);}
+  .stat .label{font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; color:#A9B1C4; margin-top:6px;}
+
+  /* SECTION generic */
+  section{padding:100px 0;}
+  .section-head{max-width:680px; margin-bottom:56px;}
+  .section-head .kicker{
+    font-size:0.74rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem); font-weight:600; line-height:1.15; color:var(--navy);}
+  .section-head p{margin-top:18px; color:var(--ink-soft); font-size:1.05rem; line-height:1.6;}
+
+  /* PHILOSOPHY */
+  .philosophy{background:var(--cream);}
+  .philo-quote{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.4; color:var(--navy); max-width:880px;
+    border-left:3px solid var(--gold); padding-left:32px;
+  }
+  .philo-quote span{color:var(--gold);}
+
+  /* PROGRAMS */
+  .programs{background:#fff;}
+  .program-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .program-card{
+    background:var(--cream); border:1px solid rgba(11,26,51,0.08); border-radius:4px;
+    padding:38px 32px; position:relative; transition:transform .25s, box-shadow .25s;
+  }
+  .program-card:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(11,26,51,0.1);}
+  .program-card .phase{
+    font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:18px; display:block;
+  }
+  .program-card h3{font-size:1.4rem; color:var(--navy); margin-bottom:14px; font-weight:600;}
+  .program-card p{color:var(--ink-soft); font-size:0.95rem; line-height:1.6; margin-bottom:22px;}
+  .program-card ul{list-style:none;}
+  .program-card li{
+    font-size:0.88rem; color:var(--ink); padding-left:18px; position:relative; margin-bottom:10px;
+  }
+  .program-card li::before{
+    content:""; position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--gold); border-radius:50%;
+  }
+
+  /* FOUNDERS */
+  .founders{background:var(--navy); color:var(--cream);}
+  .founders .section-head h2{color:var(--cream);}
+  .founders .section-head p{color:#A9B1C4;}
+  .founder-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .founder-card{
+    background:var(--navy-light); border:1px solid var(--line); border-radius:4px; padding:34px 28px;
+  }
+  .founder-card .initial{
+    width:56px; height:56px; border-radius:50%; background:var(--gold); color:var(--navy);
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem; margin-bottom:20px;
+  }
+  .founder-card h3{font-size:1.15rem; font-weight:600; margin-bottom:4px;}
+  .founder-card .role{font-size:0.78rem; color:var(--gold-bright); letter-spacing:0.04em; margin-bottom:14px; display:block;}
+  .founder-card p{font-size:0.9rem; color:#B8BFD0; line-height:1.6;}
+
+  /* VIDEO / INSIGHTS */
+  .media{background:var(--cream);}
+  .media-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:28px; align-items:stretch;}
+  .video-feature{
+    background:var(--navy); border-radius:6px; position:relative; min-height:380px;
+    display:flex; align-items:flex-end; padding:32px; overflow:hidden;
+  }
+  .video-feature::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,26,51,0.15) 0%, rgba(11,26,51,0.85) 100%);
+  }
+  .play-btn{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:74px; height:74px; border-radius:50%; background:rgba(247,244,238,0.95);
+    display:flex; align-items:center; justify-content:center; z-index:2; transition:transform .2s;
+  }
+  .video-feature:hover .play-btn{transform:translate(-50%,-50%) scale(1.08);}
+  .play-btn::after{
+    content:""; width:0; height:0; border-style:solid; border-width:11px 0 11px 18px;
+    border-color:transparent transparent transparent var(--navy); margin-left:4px;
+  }
+  .video-caption{position:relative; z-index:2; color:var(--cream);}
+  .video-caption .kicker{color:var(--gold-bright); font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:600;}
+  .video-caption h3{font-size:1.5rem; margin-top:10px; font-weight:600;}
+  .clip-list{display:flex; flex-direction:column; gap:18px;}
+  .clip{
+    background:#fff; border:1px solid rgba(11,26,51,0.08); border-radius:6px; padding:20px;
+    display:flex; gap:16px; align-items:center; flex:1; transition:border-color .2s;
+  }
+  .clip:hover{border-color:var(--gold);}
+  .clip .thumb{
+    width:64px; height:64px; border-radius:4px; background:var(--navy-light); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .clip .thumb .mini-play{width:0; height:0; border-style:solid; border-width:7px 0 7px 11px; border-color:transparent transparent transparent var(--gold-bright);}
+  .clip h4{font-size:0.95rem; color:var(--navy); font-weight:600; margin-bottom:4px;}
+  .clip span{font-size:0.78rem; color:var(--ink-soft);}
+
+  /* NEWSLETTER */
+  .newsletter{
+    background:linear-gradient(135deg, var(--navy) 0%, #0E2140 100%); color:var(--cream); padding:90px 0;
+    position:relative; overflow:hidden;
+  }
+  .newsletter::before{
+    content:""; position:absolute; right:-80px; top:-80px; width:320px; height:320px;
+    border:1px solid var(--line); border-radius:50%;
+  }
+  .nl-inner{display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap; position:relative; z-index:2;}
+  .nl-text{max-width:460px;}
+  .nl-text .kicker{font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px; display:block;}
+  .nl-text h2{font-size:clamp(1.7rem,3vw,2.3rem); font-weight:600; line-height:1.2;}
+  .nl-text p{margin-top:14px; color:#B8BFD0; font-size:0.98rem;}
+  form.nl-form{display:flex; gap:0; min-width:380px;}
+  form.nl-form input{
+    flex:1; padding:17px 20px; border:1px solid rgba(247,244,238,0.25); background:rgba(247,244,238,0.06);
+    color:var(--cream); font-family:'Inter',sans-serif; font-size:0.92rem; border-radius:2px 0 0 2px;
+  }
+  form.nl-form input::placeholder{color:#8893A8;}
+  form.nl-form input:focus{outline:2px solid var(--gold); outline-offset:-2px;}
+  form.nl-form button{
+    background:var(--gold); color:var(--navy); border:none; padding:0 28px; font-weight:600;
+    font-size:0.85rem; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; border-radius:0 2px 2px 0;
+    transition:background .2s;
+  }
+  form.nl-form button:hover{background:var(--gold-bright);}
+
+  /* FOOTER */
+  footer{background:#08152A; color:#9AA3B8; padding:64px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:56px;}
+  .footer-grid .brand .mark{color:var(--cream);}
+  footer p.about{margin-top:16px; font-size:0.88rem; line-height:1.6; max-width:280px;}
+  .footer-col h4{font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream); margin-bottom:18px;}
+  .footer-col a{display:block; font-size:0.88rem; margin-bottom:12px; color:#9AA3B8; transition:color .2s;}
+  .footer-col a:hover{color:var(--gold-bright);}
+  .social-row{display:flex; gap:14px; margin-top:18px;}
+  .social-row a{
+    width:36px; height:36px; border:1px solid rgba(247,244,238,0.18); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:0.78rem; transition:border-color .2s, color .2s;
+  }
+  .social-row a:hover{border-color:var(--gold); color:var(--gold-bright);}
+  .footer-bottom{
+    border-top:1px solid rgba(247,244,238,0.1); padding-top:24px; display:flex; justify-content:space-between;
+    font-size:0.8rem; flex-wrap:wrap; gap:10px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .program-grid, .founder-grid{grid-template-columns:1fr;}
+    .stats .wrap{grid-template-columns:repeat(2,1fr);}
+    .media-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nl-inner{flex-direction:column; align-items:flex-start;}
+    form.nl-form{min-width:0; width:100%;}
+  }
+  @media (max-width:520px){
+    .footer-grid{grid-template-columns:1fr;}
+    .hero{padding:80px 0 60px;}
+    section{padding:70px 0;}
+  }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+</style>
 </head>
 <body>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#modules">Modules</a>
-    <a href="#insights">Insights</a>
-    <a href="#media">Media</a>
-</nav>
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <div>
+        <div class="mark">SIA</div>
+        <div class="tag">Say It Aloud</div>
+      </div>
+    </div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#founders">Faculty</a>
+      <a href="#media">Media</a>
+      <a href="#newsletter">Newsletter</a>
+    </div>
+    <a href="#newsletter" class="nav-cta">Book a Session</a>
+  </nav>
+</header>
 
-<section id="home" class="hero">
-    <h1>Don’t just speak, be heard.</h1>
-    <p>Transforming academic potential into professional presence.</p>
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Career Activation Programme · Kozhikode</span>
+    <h1>Don't just speak,<br><em>be heard.</em></h1>
+    <div class="wave hero-wave" aria-hidden="true">
+      <span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span>
+      <span style="height:22px"></span><span style="height:12px"></span><span style="height:20px"></span>
+      <span style="height:9px"></span><span style="height:16px"></span><span style="height:11px"></span>
+      <span style="height:24px"></span><span style="height:14px"></span><span style="height:7px"></span>
+    </div>
+    <p class="lede">SIA transforms academic potential into professional presence — building the voice, the readiness, and the confidence that get students from the classroom to the offer letter.</p>
+    <div class="hero-actions">
+      <a href="#newsletter" class="btn-primary">Get Started</a>
+      <a href="#programs" class="btn-ghost">Explore Programs</a>
+    </div>
+  </div>
 </section>
 
-<h2 class="section-title" id="media">Sia Media</h2>
-<div class="grid">
-    <!-- Replace 'your-video.mp4' with your video file name -->
-    <video controls><source src="your-video.mp4" type="video/mp4"></video>
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="num">3</div><div class="label">Programme Phases</div></div>
+    <div class="stat"><div class="num">15+</div><div class="label">Years Faculty Experience</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Placement-Focused Design</div></div>
+    <div class="stat"><div class="num">∞</div><div class="label">Confidence, Built to Last</div></div>
+  </div>
 </div>
 
-<div class="newsletter" id="insights">
-    <h2>The Sia Dispatch</h2>
-    <p>Sign up for our latest insights on AI, communication, and placement strategy.</p>
-    <input type="email" placeholder="Enter your email" style="padding: 10px; width: 250px;">
-    <button style="padding: 10px;">Subscribe</button>
-</div>
+<section class="philosophy" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Our Philosophy</span>
+      <h2>A resume opens the door.<br>What happens in the room is on you.</h2>
+    </div>
+    <p class="philo-quote">"Your resume gets you in the room. <span>SIA gets you the offer.</span>"</p>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The Programme</span>
+      <h2>Three phases. One transformation.</h2>
+      <p>From first impressions to final negotiations — a structured journey through pre-placement, placement, and post-placement readiness.</p>
+    </div>
+    <div class="program-grid">
+      <div class="program-card">
+        <span class="phase">Phase 01</span>
+        <h3>Pre-Placement</h3>
+        <p>Building the foundation — voice, stage presence, and the soft skills that precede every great first impression.</p>
+        <ul>
+          <li>Voice modulation & stage presence</li>
+          <li>Communication fundamentals</li>
+          <li>Confidence & body language</li>
+        </ul>
+      </div>
+      <div class="program-card">
+        <span class="phase">Phase 02</span>
+        <h3>Placement</h3>
+        <p>The Career Activation Programme — interview mastery, diagnostic mock sessions, and corporate readiness that converts.</p>
+        <ul>
+          <li>Live diagnostic mock interviews</li>
+          <li>Corporate HR expectations</li>
+          <li>Group discussion & panel readiness</li>
+        </ul>
+      </div>
+      <div class="program-card">
+        <span class="phase">Phase 03</span>
+        <h3>Post-Placement</h3>
+        <p>Sustaining momentum — workplace communication, AI literacy, and management skills for the first year and beyond.</p>
+        <ul>
+          <li>Workplace communication</li>
+          <li>AI & management literacy</li>
+          <li>Career growth strategy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="founders" id="founders">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The Faculty</span>
+      <h2>Three disciplines. One panel.</h2>
+      <p>SIA is led by practitioners, not theorists — each owning a distinct dimension of career readiness.</p>
+    </div>
+    <div class="founder-grid">
+      <div class="founder-card">
+        <div class="initial">A</div>
+        <h3>Anoop</h3>
+        <span class="role">Communication & Stage Presence</span>
+        <p>15+ years in higher education and UGC-NET qualified, leading voice modulation and on-stage confidence training.</p>
+      </div>
+      <div class="founder-card">
+        <div class="initial">U</div>
+        <h3>Dr. Usha P.M.</h3>
+        <span class="role">Management & AI Literacy</span>
+        <p>PhD holder and Assistant HOD at Devagiri College, bringing management theory and AI literacy into practical training.</p>
+      </div>
+      <div class="founder-card">
+        <div class="initial">M</div>
+        <h3>Manisha Sunil</h3>
+        <span class="role">Corporate Readiness & Placement</span>
+        <p>Assistant Professor specializing in corporate HR expectations and end-to-end placement preparation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="media" id="media">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">In the Room</span>
+      <h2>Watch the training in action.</h2>
+    </div>
+    <div class="media-grid">
+      <div class="video-feature">
+        <div class="play-btn" role="button" aria-label="Play featured video"></div>
+        <div class="video-caption">
+          <span class="kicker">Featured</span>
+          <h3>Inside the Diagnostic Mock Session</h3>
+        </div>
+      </div>
+      <div class="clip-list">
+        <div class="clip">
+          <div class="thumb"><div class="mini-play"></div></div>
+          <div><h4>Voice Modulation Basics</h4><span>Pre-Placement · 6 min</span></div>
+        </div>
+        <div class="clip">
+          <div class="thumb"><div class="mini-play"></div></div>
+          <div><h4>Cracking the HR Round</h4><span>Placement · 9 min</span></div>
+        </div>
+        <div class="clip">
+          <div class="thumb"><div class="mini-play"></div></div>
+          <div><h4>AI Literacy for the Workplace</h4><span>Post-Placement · 7 min</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="wrap nl-inner">
+    <div class="nl-text">
+      <span class="kicker">Stay in the Loop</span>
+      <h2>Get career-readiness insights, weekly.</h2>
+      <p>Practical tips on communication, placement prep, and workplace presence — straight from the SIA faculty.</p>
+    </div>
+    <form class="nl-form" action="https://forms.gle/pYyM3huQ35zPPWby6" method="get" target="_blank">
+      <label for="email" class="visually-hidden" style="position:absolute; left:-9999px;">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Email Address" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">
+        <div class="mark">SIA</div>
+        <p class="about">Say It Aloud — career activation training in communication, stage presence, and corporate readiness, based in Kozhikode, Kerala.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#founders">Faculty</a>
+        <a href="#media">Media</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://anoopjaya.github.io" target="_blank">Website</a>
+        <a href="https://forms.gle/pYyM3huQ35zPPWby6" target="_blank">Register Now</a>
+      </div>
+      <div class="footer-col">
+        <h4>Programmes</h4>
+        <a href="#programs">Pre-Placement</a>
+        <a href="#programs">Placement</a>
+        <a href="#programs">Post-Placement</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SIA — Say It Aloud. All rights reserved.</span>
+      <span>Kozhikode, Kerala</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
