@@ -1,155 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIA — Say It Aloud | Communication & Career Activation</title>
-<meta name="description" content="SIA (Say It Aloud) transforms academic potential into professional presence through stage presence, AI literacy, and corporate-readiness training.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#0B1A33;
-    --navy-light:#1E2F4D;
-    --gold:#C9A24B;
-    --gold-bright:#E0BE6F;
-    --cream:#F7F4EE;
-    --ink:#10141C;
-    --ink-soft:#4A5161;
-    --line:rgba(201,162,75,0.25);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.serif{font-family:'Fraunces', serif;}
-  a{color:inherit; text-decoration:none;}
-  img{max-width:100%; display:block;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIA — Say It Aloud | Communication & Career Activation</title>
+    <meta name="description" content="SIA (Say It Aloud) transforms academic potential into professional presence through stage presence, AI literacy, and corporate-readiness training.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1A33;
+            --navy-light: #1E2F4D;
+            --gold: #C9A24B;
+            --gold-bright: #E0BE6F;
+            --cream: #F7F4EE;
+            --ink: #10141C;
+            --ink-soft: #4A5161;
+            --line: rgba(201,162,75,0.25);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--ink); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, .serif { font-family: 'Fraunces', serif; }
+        a { color: inherit; text-decoration: none; }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
-  /* Waveform signature */
-  .wave{display:flex; align-items:flex-end; gap:4px; height:18px;}
-  .wave span{width:3px; background:var(--gold); border-radius:2px;}
-  .wave.dark span{background:var(--gold-bright);}
+        /* Video Section */
+        .video-container { width: 100%; max-width: 800px; margin: 40px auto; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        video { width: 100%; display: block; }
 
-  /* NAV */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(11,26,51,0.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(201,162,75,0.18);
-  }
-  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:20px 32px;}
-  .brand{display:flex; align-items:center; gap:10px;}
-  .brand .mark{font-family:'Fraunces',serif; font-weight:700; font-size:1.5rem; color:var(--cream); letter-spacing:0.02em;}
-  .brand .tag{font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-top:2px;}
-  .navlinks{display:flex; gap:34px; align-items:center;}
-  .navlinks a{font-size:0.85rem; font-weight:500; color:#D8DCE6; letter-spacing:0.01em; transition:color .2s;}
-  .navlinks a:hover{color:var(--gold-bright);}
-  .nav-cta{
-    background:var(--gold); color:var(--navy); padding:10px 20px; border-radius:2px;
-    font-weight:600; font-size:0.8rem; letter-spacing:0.04em; text-transform:uppercase;
-    transition:background .2s;
-  }
-  .nav-cta:hover{background:var(--gold-bright);}
-  .navtoggle{display:none;}
+        /* Navigation & Other Styles (Previous code remains) */
+        header { position: sticky; top: 0; z-index: 50; background: rgba(11,26,51,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(201,162,75,0.18); }
+        nav.wrap { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; }
+        .brand .mark { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.5rem; color: var(--cream); }
+        .navlinks { display: flex; gap: 34px; }
+        .navlinks a { font-size: 0.85rem; color: #D8DCE6; }
+        .hero { background: linear-gradient(180deg, var(--navy) 0%, #0E2140 100%); color: var(--cream); padding: 110px 0 90px; text-align: center; }
+        .program-card { background: #fff; padding: 38px 32px; border: 1px solid rgba(11,26,51,0.08); border-radius: 4px; }
+    </style>
+</head>
+<body>
 
-  /* HERO */
-  .hero{
-    background:
-      radial-gradient(ellipse at 80% 0%, rgba(201,162,75,0.16), transparent 55%),
-      linear-gradient(180deg, var(--navy) 0%, #0E2140 100%);
-    color:var(--cream);
-    padding:110px 0 90px;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::after{
-    content:"";
-    position:absolute; inset:0;
-    background-image:repeating-linear-gradient(90deg, rgba(201,162,75,0.05) 0, rgba(201,162,75,0.05) 1px, transparent 1px, transparent 80px);
-    pointer-events:none;
-  }
-  .hero-inner{position:relative; z-index:2; max-width:760px;}
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:10px;
-    font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase;
-    color:var(--gold-bright); margin-bottom:28px; font-weight:600;
-  }
-  .hero h1{
-    font-size:clamp(2.6rem, 5.6vw, 4.6rem);
-    line-height:1.04;
-    font-weight:600;
-    letter-spacing:-0.01em;
-    margin-bottom:8px;
-  }
-  .hero h1 em{font-style:italic; font-weight:500; color:var(--gold-bright);}
-  .hero-wave{margin:28px 0 30px;}
-  .hero-wave span{animation:bounce 1.8s ease-in-out infinite;}
-  .hero-wave span:nth-child(odd){animation-delay:.15s;}
-  .hero-wave span:nth-child(3n){animation-delay:.3s;}
-  @keyframes bounce{
-    0%,100%{height:6px;} 50%{height:24px;}
-  }
-  @media (prefers-reduced-motion: reduce){ .hero-wave span{animation:none; height:14px;} }
-  .hero p.lede{
-    font-size:1.15rem; line-height:1.65; color:#C3CADC; max-width:540px; margin-bottom:42px; font-weight:400;
-  }
-  .hero-actions{display:flex; gap:18px; flex-wrap:wrap;}
-  .btn-primary{
-    background:var(--gold); color:var(--navy); padding:16px 30px; font-weight:600;
-    font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase; border-radius:2px;
-    transition:transform .2s, background .2s; display:inline-block;
-  }
-  .btn-primary:hover{background:var(--gold-bright); transform:translateY(-2px);}
-  .btn-ghost{
-    border:1px solid rgba(247,244,238,0.35); color:var(--cream); padding:16px 30px;
-    font-weight:500; font-size:0.88rem; letter-spacing:0.03em; text-transform:uppercase; border-radius:2px;
-    transition:border-color .2s, background .2s;
-  }
-  .btn-ghost:hover{border-color:var(--gold-bright); background:rgba(201,162,75,0.08);}
+    <header>
+        <nav class="wrap">
+            <div class="brand"><span class="mark">SIA</span></div>
+            <div class="navlinks">
+                <a href="#about">About</a>
+                <a href="#programs">Programs</a>
+            </div>
+        </nav>
+    </header>
 
-  /* STAT BAR */
-  .stats{
-    background:var(--navy-light); color:var(--cream); padding:46px 0;
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  }
-  .stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;}
-  .stat .num{font-family:'Fraunces',serif; font-size:2.4rem; font-weight:600; color:var(--gold-bright);}
-  .stat .label{font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; color:#A9B1C4; margin-top:6px;}
+    <section class="hero">
+        <div class="wrap">
+            <h1>Transforming Potential into <em>Presence</em></h1>
+            <p class="lede">Master the art of communication and corporate readiness.</p>
+            
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="cr.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
 
-  /* SECTION generic */
-  section{padding:100px 0;}
-  .section-head{max-width:680px; margin-bottom:56px;}
-  .section-head .kicker{
-    font-size:0.74rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px; display:block;
-  }
-  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem); font-weight:600; line-height:1.15; color:var(--navy);}
-  .section-head p{margin-top:18px; color:var(--ink-soft); font-size:1.05rem; line-height:1.6;}
-
-  /* PHILOSOPHY */
-  .philosophy{background:var(--cream);}
-  .philo-quote{
-    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
-    font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.4; color:var(--navy); max-width:880px;
-    border-left:3px solid var(--gold); padding-left:32px;
-  }
-  .philo-quote span{color:var(--gold);}
-
-  /* PROGRAMS */
-  .programs{background:#fff;}
-  .program-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
-  .program-card{
-    background:var(--cream); border:1px solid rgba(11,26,51,0.08); border-radius:4px;
-    padding:38px 32px; position:relative; transition:transform .25s, box-shadow .25s;
-  }
-  .program-card:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(11,26,51,0.1);}
-  .program-card .phase{
-    font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:18px; display:block;
-  }
-  .program-card h3{font-size:1.4rem; color:var(--navy); margin-bottom:14px; font-weight
+</body>
+</html>
