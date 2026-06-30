@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Sia | Say It Aloud</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; text-align: center; }
-        .hero { padding: 150px 20px; }
-        h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
-        .btn { display: inline-block; padding: 15px 30px; margin: 10px; border: 1px solid #fff; color: #fff; text-decoration: none; border-radius: 5px; }
-        .btn-white { background-color: #fff; color: #000; font-weight: bold; }
+        body { background: #000; color: #fff; font-family: 'Helvetica', sans-serif; margin: 0; }
+        nav { padding: 20px; display: flex; justify-content: center; gap: 30px; border-bottom: 1px solid #333; }
+        nav a { color: #fff; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; }
+        .hero { padding: 100px 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 50px; }
+        .section-title { text-align: center; font-size: 2rem; margin-top: 50px; }
+        video { width: 100%; border-radius: 8px; }
+        .newsletter { padding: 50px; text-align: center; border: 1px solid #333; margin: 20px; }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1>Don’t just speak, be heard.<br>We transform academic potential into professional presence.</h1>
-        <p>Contact us: sia.sayitaloud.io@gmail.com</p>
-        <a href="mailto:sia.sayitaloud.io@gmail.com" class="btn btn-white">Schedule a Call</a>
-        <a href="#" class="btn">Download Brochure</a>
-    </section>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#modules">Modules</a>
+    <a href="#insights">Insights</a>
+    <a href="#media">Media</a>
+</nav>
+
+<section id="home" class="hero">
+    <h1>Don’t just speak, be heard.</h1>
+    <p>Transforming academic potential into professional presence.</p>
+</section>
+
+<h2 class="section-title" id="media">Sia Media</h2>
+<div class="grid">
+    <!-- Replace 'your-video.mp4' with your video file name -->
+    <video controls><source src="your-video.mp4" type="video/mp4"></video>
+</div>
+
+<div class="newsletter" id="insights">
+    <h2>The Sia Dispatch</h2>
+    <p>Sign up for our latest insights on AI, communication, and placement strategy.</p>
+    <input type="email" placeholder="Enter your email" style="padding: 10px; width: 250px;">
+    <button style="padding: 10px;">Subscribe</button>
+</div>
+
 </body>
 </html>
